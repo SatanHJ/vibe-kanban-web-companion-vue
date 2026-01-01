@@ -2,10 +2,7 @@
 
 This package adds point-and-click edit functionality to web apps, when used with [Vibe Kanban](https://vibekanban.com).
 
-Works with frameworks like [Next.js](https://nextjs.org/),
-  [Create React App](https://create-react-app.dev/),
-  & [Vite](https://github.com/vitejs/vite/tree/main/packages/plugin-react)
-  that use [@babel/plugin-transform-react-jsx-source](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source)
+Works with Vue 3 applications using [Vite](https://vitejs.dev/) or other build tools that support source map generation.
 
 ## Installation
 
@@ -19,60 +16,51 @@ npm i vibe-kanban-web-companion
 ## Usage
 
 <details>
-<summary>Create React App</summary>
+<summary>Vue 3 with Vite</summary>
 
-```diff
-+import { VibeKanbanWebCompanion } from 'vibe-kanban-web-companion';
- import React from 'react';
- import ReactDOM from 'react-dom/client';
- import './index.css';
-@@ -8,7 +7,6 @@ import reportWebVitals from './reportWebVitals';
- const root = ReactDOM.createRoot(document.getElementById('root'));
- root.render(
-   <React.StrictMode>
-+    <VibeKanbanWebCompanion />
-     <App />
-   </React.StrictMode>
- );
+In your `main.ts` or `main.js` file:
+
+```typescript
+import { createApp } from 'vue'
+import { VibeKanbanWebCompanion } from 'vibe-kanban-web-companion'
+import App from './App.vue'
+
+const app = createApp(App)
+app.component('VibeKanbanWebCompanion', VibeKanbanWebCompanion)
+app.mount('#app')
+```
+
+Then add the component to your root `App.vue`:
+
+```vue
+<template>
+  <VibeKanbanWebCompanion />
+  <router-view />
+</template>
 ```
 
 </details>
 
 <details>
-<summary>Next.js</summary>
+<summary>Nuxt 3</summary>
 
-```diff
-+import { VibeKanbanWebCompanion } from 'vibe-kanban-web-companion'
- import type { AppProps } from 'next/app'
- import '../styles/globals.css'
+Create a plugin file `plugins/vibe-kanban.client.ts`:
 
- function MyApp({ Component, pageProps }: AppProps) {
-   return (
-     <>
-+      <VibeKanbanWebCompanion />
-       <Component {...pageProps} />
-     </>
-   )
+```typescript
+import { VibeKanbanWebCompanion } from 'vibe-kanban-web-companion'
+
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.component('VibeKanbanWebCompanion', VibeKanbanWebCompanion)
+})
 ```
 
-</details>
+Then add the component to your `app.vue`:
 
-<details>
-<summary>Vite</summary>
-
-```diff
-+import { VibeKanbanWebCompanion } from "vibe-kanban-web-companion";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-+   <VibeKanbanWebCompanion />
-  </React.StrictMode>
-);
+```vue
+<template>
+  <VibeKanbanWebCompanion />
+  <NuxtPage />
+</template>
 ```
 
 </details>
