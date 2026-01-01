@@ -24,7 +24,6 @@
     "url": "git+https://github.com/BloopAI/vibe-kanban-web-companion.git"
   },
   "keywords": [
-    "react",
     "vue",
     "dx",
     "vscode",
@@ -37,13 +36,9 @@
   },
   "homepage": "https://github.com/BloopAI/vibe-kanban-web-companion#readme",
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "vue": ">=3.0.0"
   },
-  "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.3.1",
-    "htm": "^3.1.0",
-    "react-merge-refs": "^1.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.8.6",
     "@types/react": "^18.3.12",
